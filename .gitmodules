@@ -1,9 +1,8 @@
-[submodule "src/platform"]
-	path = src/platform
-	url = https://github.com/Pulse-Eight/platform
 [submodule "support"]
 	path = support
-	url = https://github.com/Pulse-Eight/libcec-support.git
-[submodule "src/dotnet"]
-	path = src/dotnet
-	url = https://github.com/Pulse-Eight/cec-dotnet.git
+	url = https://github.com/benbellaiche/libcec-support.git
+	branch = master
+[submodule "libcec-support"]
+	path = libcec-support
+	url = https://github.com/benbellaiche/libcec-support.git
+	branch = master
