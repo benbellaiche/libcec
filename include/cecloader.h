@@ -43,10 +43,10 @@ HINSTANCE g_libCEC = NULL;
  * @param strLib The name of and/or path to libCEC
  * @return An instance of ICECAdapter or NULL on error.
  */
-CEC::ICECAdapter *LibCecInitialise(CEC::libcec_configuration *configuration, const char *strLib = NULL)
+CEC::ICECAdapter *LibCecInitialise(CEC::libcec_configuration *configuration, TCHAR* strLib = NULL)
 {
   if (!g_libCEC)
-    g_libCEC = LoadLibrary(strLib ? strLib : "cec.dll");
+    g_libCEC = LoadLibrary(strLib ? strLib : L"cec.dll");
   if (!g_libCEC)
     return NULL;
 
@@ -83,10 +83,10 @@ void UnloadLibCec(CEC::ICECAdapter *device)
  * @param strLib The name of and/or path to libCEC
  * @return True when the command was sent, false otherwise.
  */
-bool LibCecBootloader(const char *strLib = NULL)
+bool LibCecBootloader(TCHAR* strLib = NULL)
 {
   if (!g_libCEC)
-    g_libCEC = LoadLibrary(strLib ? strLib : "cec.dll");
+    g_libCEC = LoadLibrary(strLib ? strLib : L"cec.dll");
   if (!g_libCEC)
     return NULL;
 
