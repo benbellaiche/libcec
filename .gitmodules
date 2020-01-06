@@ -2,7 +2,7 @@
 	path = support
 	url = https://github.com/benbellaiche/libcec-support.git
 	branch = master
-[submodule "src/plateform"]
-	path = src/plateform
+[submodule "src/platform"]
+	path = src/platform
 	url = https://github.com/benbellaiche/platform.git
 	branch = master
