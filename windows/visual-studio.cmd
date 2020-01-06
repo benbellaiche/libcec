@@ -5,8 +5,8 @@ rem Generate Visual Studio projects for libCEC
 SETLOCAL
 
 SET MYDIR=%~dp0
-SET BUILDTYPE=Debug
-SET VSVERSION=14
+SET BUILDTYPE=Release
+SET VSVERSION=16
 SET INSTALLPATH=%MYDIR%..\build
 
 IF NOT EXIST "%MYDIR%..\support\windows\cmake\build.cmd" (
@@ -19,16 +19,13 @@ IF NOT EXIST "%MYDIR%..\src\platform\windows\build.cmd" (
   GOTO exit
 )
 
-del /s /f /q %MYDIR%..\build
+del /s /f /q "%MYDIR%..\build"
 
-FOR %%T IN (amd64 x86) DO (
-  CALL %MYDIR%build-lib.cmd %%T %BUILDTYPE% %VSVERSION% %INSTALLPATH% vs
+FOR %%T IN (x64) DO (
+  CALL "%MYDIR%build-lib.cmd" %%T %BUILDTYPE% %VSVERSION% "%INSTALLPATH%" vs
+  ECHO Visual Studio solutions can be found in:
+  ECHO %%T bits: "%MYDIR%..\build\cmake\%%T\libcec.sln"
+  ECHO This project only compile in %BUILDTYPE% mode
 )
-
-ECHO Visual Studio solutions can be found in:
-ECHO 32 bits: %MYDIR%..\build\cmake\x86\libcec.sln
-ECHO 64 bits: %MYDIR%..\build\cmake\amd64\libcec.sln
-ECHO.
-ECHO These projects only compile in %BUILDTYPE% mode
 
 :exit
