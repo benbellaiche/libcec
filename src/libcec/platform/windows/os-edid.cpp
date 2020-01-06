@@ -49,7 +49,7 @@ uint16_t GetPhysicalAddressFromDevice(IN HDEVINFO hDevHandle, IN PSP_DEVINFO_DAT
   uint16_t iPA(0);
 
   HKEY hDevRegKey = SetupDiOpenDevRegKey(hDevHandle, deviceInfoData, DICS_FLAG_GLOBAL, 0, DIREG_DEV, KEY_ALL_ACCESS);
-  if (hDevRegKey)
+  if (hDevRegKey != INVALID_HANDLE_VALUE)
   {
     CHAR  regEntryName[128];
     DWORD regEntryNameLength(128);
@@ -79,7 +79,7 @@ uint16_t CEDIDParser::GetPhysicalAddress(void)
   SP_DEVINFO_DATA deviceInfoData;
 
   hDevHandle = SetupDiGetClassDevsEx(&MONITOR_GUID, NULL, NULL, DIGCF_PRESENT, NULL,  NULL, NULL);
-  if (!hDevHandle)
+  if (hDevHandle == INVALID_HANDLE_VALUE)
     return iPA;
 
   for (int i=0; ERROR_NO_MORE_ITEMS != GetLastError(); i++)
